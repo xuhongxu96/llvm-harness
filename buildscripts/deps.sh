@@ -82,5 +82,11 @@ DEP_LLUBI_LEGACY_BUILD_DIR=${DEP_LLUBI_LEGACY_DIR}/build
 # Python dependencies
 #-================================
 
+# tree-sitter
+
+DEP_TREE_SITTER_DIR=${LLVM_HARNESS_DEPS_DIR}/tree-sitter
+DEP_TREE_SITTER_VERSION=v0.23.2
+DEP_TREE_SITTER_SOURCE_DIR=${DEP_TREE_SITTER_DIR}/tree-sitter
+
 DEP_PY3_VERSION=$(gdb --nx -batch -ex "python import platform; v=platform.python_version().split('.'); print(v[0]+'.'+v[1])")
 DEP_PY3_VENV_DIR=${LLVM_HARNESS_DEPS_DIR}/py3_venv

@@ -6,14 +6,19 @@ We recommend developing this project in a powerful server since we need to frequ
 
 After cloning this project into your server:
 
-1. Install [Remote-SSH](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh) and [Dev Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) plugins in VS Code.
+1. Install [Remote-SSH](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh) plugin in VS Code.
 2. Reopen VS Code and call the Command Pallete up by `Ctrl+Shift+P`.
 3. Type `Remote-SSH` and select `Remote-SSH: Connect to Host...`.
 4. Enter your server address and your password to connect to your server.
 5. Open the llvm-harness project in VS Code.
-6. Type `Dev Containers` and select `Dev Containers: Rebuild and Reopen in Container`.
-7. Wait until VS Code build our devcontainer and import the project successfully.
-8. Call the terminal up to check if we are successful by typing `whoami`. If it shows `harness`, we are successful.
+6. Build and start the docker container (see [BUILD.md](./docs/BUILD.md)):
+
+```shell
+docker build -t llvm-harness:latest -f Dockerfile --build-arg USER_UID=$(id -u) --build-arg USER_GID=$(id -g) .
+docker run --rm -it -v $(pwd):/llvm-harness --cap-add=SYS_PTRACE --security-opt seccomp=unconfined llvm-harness:latest
+```
+
+7. Call the terminal up to check if we are successful by typing `whoami`. If it shows `harness`, we are successful.
 
 ## Step 1. Install Dependencies
 

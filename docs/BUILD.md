@@ -7,9 +7,10 @@ There are two options to build the project.
 ### Step 1. Build the Image
 
 ```shell
-docker build -t llvm-harness-base:latest -f .devcontainer/Dockerfile .
 docker build -t llvm-harness:latest -f Dockerfile --build-arg USER_UID=$(id -u) --build-arg USER_GID=$(id -g) .
 ```
+
+The image is a multi-stage build: each dependency (LLVM, z3, re2c, alive2, llubi, Python venv) is compiled in its own stage, and the final image copies the sources and built files and installs them. This means editing one installation script (e.g. `install_llvm.sh`) does not require rebuilding the other, independent dependencies, and adding a package to the final stage's `apt` list (in `Dockerfile`) does not require rebuilding any of them.
 
 Note, it may take ~15 minutes to build the image, depending on your machine.
 

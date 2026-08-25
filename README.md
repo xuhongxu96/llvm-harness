@@ -37,7 +37,6 @@ However, we also found several challenges when using agents. This project is an 
 The simplest way is using docker after editing `environments` and fill in the API keys:
 
 ```bash
-docker build -t llvm-harness-base:latest -f .devcontainer/Dockerfile .
 docker build -t llvm-harness:latest -f Dockerfile --build-arg USER_UID=$(id -u) --build-arg USER_GID=$(id -g) .
 docker run --rm -it -v $(pwd):/llvm-harness --cap-add=SYS_PTRACE --security-opt seccomp=unconfined llvm-harness:latest
 # tmux # Optional: spawn a tmux session if you want to see GDB's output.
