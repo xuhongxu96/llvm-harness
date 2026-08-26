@@ -55,6 +55,8 @@ class GPTGenericAgent(GenericAgent):
 
       if hasattr(delta, "reasoning_content") and delta.reasoning_content is not None:
         reasoning_content += delta.reasoning_content
+      elif hasattr(delta, "reasoning") and delta.reasoning is not None:
+        reasoning_content += delta.reasoning
 
       if hasattr(delta, "content") and delta.content:
         answer_content += delta.content
