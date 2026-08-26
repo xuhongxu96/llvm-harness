@@ -5,6 +5,15 @@ Uses the tree-sitter Bash grammar to parse shell code and collect every
 script invokes without actually running it.
 """
 
+import ctypes
+
+import tree_sitter._binding
+
+ctypes.CDLL(
+    tree_sitter._binding.__file__,
+    mode=ctypes.RTLD_GLOBAL,
+)
+
 import tree_sitter_bash
 from tree_sitter import Language, Parser
 

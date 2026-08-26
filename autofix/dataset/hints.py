@@ -1,3 +1,12 @@
+import ctypes
+
+import tree_sitter._binding
+
+ctypes.CDLL(
+    tree_sitter._binding.__file__,
+    mode=ctypes.RTLD_GLOBAL,
+)
+
 import tree_sitter_cpp
 from tree_sitter import Language, Parser, Tree
 from unidiff import Hunk, PatchedFile
