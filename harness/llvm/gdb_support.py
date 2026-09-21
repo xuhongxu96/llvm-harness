@@ -25,6 +25,7 @@ set print pretty on
 continue
 """
 
+context.update(arch='ppc64le', os='linux')
 
 def _list_tmux_panes() -> Set[str]:
   """Snapshot of currently-live tmux pane ids across all sessions.
